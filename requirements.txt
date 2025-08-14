@@ -1,0 +1,8 @@
+flask
+torch
+torchvision
+transformers
+Pillow
+gTTS
+easyocr
+opencv-python
