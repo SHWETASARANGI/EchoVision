@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>EchoVision - Image Summary</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style type="text/tailwindcss">
+    :root {
+      --primary-color: #3B82F6;
+      --secondary-color: #cf93b1;
+      --background-light: #FDF2F8;
+      --text-dark: #1F2937;
+      --text-light: #4B5563;
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "var(--primary-color)",
+            secondary: "var(--secondary-color)",
+            "background-light": "var(--background-light)",
+            "text-dark": "var(--text-dark)",
+            "text-light": "var(--text-light)",
+          },
+          fontFamily: {
+            display: ["Lexend"],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background-light font-display text-text-dark">
+<div class="flex min-h-screen flex-col">
+
+  <!-- Header -->
+  <header class="border-b border-secondary/20 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between">
+      <div class="flex items-center gap-4">
+        <span class="material-symbols-outlined text-primary text-3xl"> visibility </span>
+        <h1 class="text-2xl font-bold text-text-dark">EchoVision</h1>
+      </div>
+      <nav class="hidden items-center gap-8 md:flex">
+        <a class="text-lg font-medium hover:text-secondary" href="/">Home</a>
+        <a class="text-lg font-medium hover:text-secondary" href="#">About</a>
+        <a class="text-lg font-medium hover:text-secondary" href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-grow">
+    <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="text-center">
+        <h2 class="text-4xl font-extrabold tracking-tight text-text-dark sm:text-5xl">Image Summary</h2>
+        <p class="mt-6 text-xl text-text-light">
+          {{ summary }}
+        </p>
+      </div>
+
+      <!-- Uploaded Image Preview -->
+      <div class="mt-8 flex justify-center">
+        <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" class="rounded-lg shadow-md max-h-96">
+      </div>
+
+      <!-- Audio Section -->
+      <div class="mt-12 text-center">
+        <button onclick="document.getElementById('audio').play()" 
+          class="rounded-lg bg-secondary px-8 py-3 text-lg font-bold text-white shadow-lg transition-transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-secondary/50">
+          <span class="material-symbols-outlined align-middle">volume_up</span>
+          Read Aloud
+        </button>
+        <audio id="audio" src="{{ url_for('static', filename=audio_file) }}"></audio>
+      </div>
+
+      <!-- Back to Upload -->
+      <div class="mt-12 text-center">
+        <a href="/" class="inline-flex items-center gap-2 text-lg font-medium text-text-light hover:text-secondary transition">
+          <span class="material-symbols-outlined">arrow_back</span>
+          Back to Upload
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-secondary/20 bg-background-light">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div class="flex gap-6">
+          <a class="text-base hover:text-secondary" href="#">Privacy Policy</a>
+          <a class="text-base hover:text-secondary" href="#">Terms of Service</a>
+        </div>
+        <p class="text-base text-text-light">© 2024 EchoVision. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

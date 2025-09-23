@@ -1,14 +1,19 @@
 import easyocr
+from PIL import Image
+import numpy as np
 
 class OCREngine:
-    def __init__(self):
-        # Initialize the OCR reader (English language)
-        self.reader = easyocr.Reader(['en'], gpu=False)  # set gpu=True if you have CUDA
+    def _init_(self):
+        self.reader = easyocr.Reader(['en'], gpu=False)
 
-    def extract_text(self, image_path):
-        # Run OCR on the image
-        results = self.reader.readtext(image_path)
-        
-        # Combine all detected text
+    def extract_text(self, image):
+        """
+        Extracts text from an image.
+        Accepts either a file path (str) or a PIL.Image.
+        """
+        if isinstance(image, Image.Image):  # if PIL image
+            image = np.array(image)  # easyocr needs numpy array
+
+        results = self.reader.readtext(image)
         extracted_text = " ".join([res[1] for res in results])
         return extracted_text

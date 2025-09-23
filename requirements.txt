@@ -4,5 +4,6 @@ torchvision
 transformers
 Pillow
 gTTS
+playsound==1.2.2
 easyocr
 opencv-python
